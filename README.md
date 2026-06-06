@@ -2,7 +2,7 @@
 
 This project adds a reproducible pipeline for the UCI Forest Covertype dataset [^fn1] for multiple machine learning models to find reliables classifiers for forest cover types. The dataset contains 581,012
 instances, 54 features, and a mixture of terrain measurements,
-wilderness indicators, and sparse soil-type indicators. The 
+wilderness indicators, and sparse soil-type indicators. The seven types used for classification are: Spruce/Fir, Lodgepole Pine, Ponderosa Pine, Cottonwood/Willow, Aspen, Douglas-fir, and Krummholz. 
 
 ## Notebooks
 
