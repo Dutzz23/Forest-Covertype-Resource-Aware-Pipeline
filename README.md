@@ -1,6 +1,8 @@
 # Forest Covertype Resource-Aware Pipeline
 
-This project adds a reproducible pipeline for the UCI Forest Covertype dataset [^fn1]   without changing the original `ForestCover.ipynb` notebook.
+This project adds a reproducible pipeline for the UCI Forest Covertype dataset [^fn1] for multiple machine learning models to find reliables classifiers for forest cover types. The dataset contains 581,012
+instances, 54 features, and a mixture of terrain measurements,
+wilderness indicators, and sparse soil-type indicators. The 
 
 ## Notebooks
 
@@ -39,7 +41,7 @@ The CLI defaults to `--n-jobs 1` so it works in restricted Windows environments.
 - `l1_svm_newton_active_set.joblib`: one-vs-rest L1 SVM trained by active-set Newton steps and line search.
 - `opf_log_euclidean.joblib`: OPF baseline using an OPF binding when available, otherwise a complete-graph supervised OPF fallback over a bounded retained set.
 - `knn_log_euclidean_loocv.joblib`: k-NN with Log-Euclidean feature distances and strict leave-one-out selection over `k in {1, 3, 5}`.
-- `scale_invariant_online_linear.joblib`: ScInOL-style online linear softmax classifier with coordinate scale invariance.
+- `scale_invariant_online_linear.joblib`: ScInOL-style online linear softmax classifier with coordinate scale invariance. The seven types used for classification are: Spruce/Fir, Lodgepole Pine, Ponderosa Pine, Cottonwood/Willow, Aspen, Douglas-fir, and Krummholz. 
 
 Notes:
 
