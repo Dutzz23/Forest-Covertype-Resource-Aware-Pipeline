@@ -64,7 +64,7 @@ Notes:
 
 ![image](figures/final_model_accuracy.png)
 
-![image](figures/per_class_f1_full_holdout.png)
+![image](figures/cv_per_class_f1_heatmap_numbered.png)
 
 
 [^fn1]: Blackard, J. (1998). Covertype [Dataset]. UCI Machine Learning Repository. https://doi.org/10.24432/C50K5N.
