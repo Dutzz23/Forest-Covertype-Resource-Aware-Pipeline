@@ -33,15 +33,24 @@ The script writes trained models immediately after each fit to `models/` and upd
 
 The CLI defaults to `--n-jobs 1` so it works in restricted Windows environments. Increase it, for example `--n-jobs -1`, when running outside that constraint.
 
-## Implemented Methods
+## Implemented Methods and Libraries
 
-- `random_forest_entropy_40.joblib`: 40-tree entropy Random Forest baseline.
-- `budgetpruned_random_forest.joblib`: BUDGETPRUNE-style 0-1 feature-reuse pruning solved with SciPy HiGHS MILP, with the exact LP relaxation retained on the model.
-- `efdt_nb_leaves.pkl` or `hoeffding_nb_leaves.pkl`: River stream tree with Naive Bayes leaves and sequential accuracy/Kappa tracking.
-- `l1_svm_newton_active_set.joblib`: one-vs-rest L1 SVM trained by active-set Newton steps and line search.
-- `opf_log_euclidean.joblib`: OPF baseline using an OPF binding when available, otherwise a complete-graph supervised OPF fallback over a bounded retained set.
-- `knn_log_euclidean_loocv.joblib`: k-NN with Log-Euclidean feature distances and strict leave-one-out selection over `k in {1, 3, 5}`.
-- `scale_invariant_online_linear.joblib`: ScInOL-style online linear softmax classifier with coordinate scale invariance. The seven types used for classification are: Spruce/Fir, Lodgepole Pine, Ponderosa Pine, Cottonwood/Willow, Aspen, Douglas-fir, and Krummholz. 
+| Model / artifact | Main library or implementation |
+| --- | --- |
+| `random_forest_entropy_40.joblib` | `scikit-learn` `RandomForestClassifier` |
+| `budgetpruned_random_forest.joblib` | `scikit-learn` random forest plus `scipy.optimize.milp` / `linprog` for BUDGETPRUNE-style feature and tree selection |
+| `efdt_nb_leaves.pkl` or `hoeffding_nb_leaves.pkl` | `river.tree.ExtremelyFastDecisionTreeClassifier` when available, otherwise `river.tree.HoeffdingTreeClassifier` |
+| `l1_svm_newton_active_set.joblib` | Custom NumPy active-set Newton optimizer using the `scikit-learn` estimator interface and `StandardScaler` |
+| `opf_log_euclidean.joblib` | `opfython` `SupervisedOPF` when available; otherwise a custom complete-graph OPF fallback using `scipy` and `scikit-learn` distances |
+| `knn_log_euclidean_loocv.joblib` | `scikit-learn` `KNeighborsClassifier` / `NearestNeighbors` with a custom Log-Euclidean transformer |
+| `scale_invariant_online_linear.joblib` | Custom NumPy ScInOL-style online softmax classifier using the `scikit-learn` estimator interface |
+| XGBoost GBDT notebook model | `xgboost.XGBClassifier` |
+| CatBoost GBDT notebook model | `catboost.CatBoostClassifier` |
+| Histogram GBDT fallback notebook model | `scikit-learn` `HistGradientBoostingClassifier` |
+| Tabular ResNet notebook model | Custom `torch.nn.Module` trained with PyTorch |
+| FT-Transformer mini notebook model | Custom `torch.nn.Module` trained with PyTorch |
+| NODE-lite notebook model | Custom `torch.nn.Module` trained with PyTorch |
+| TabNet notebook model | `pytorch-tabnet` `TabNetClassifier` |
 
 Notes:
 
